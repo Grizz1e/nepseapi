@@ -46,7 +46,7 @@ def get_company(date_str: str, symbol: str):
     date_dict = extract_date(date_str)
     if not date_dict:
         return err_res
-    engine = create_engine('postgresql://postgres:1234@127.0.0.1:5432/airflow')
+    engine = create_engine(f'postgresql://{os.environ['DBUSER']}:{os.environ['DBPASSWORD']}@{os.environ['DBHOST']}:{os.environ['DBPORT']}/{os.environ['DBNAME']}')
     Session = sessionmaker(bind=engine)
     session = Session()
 
